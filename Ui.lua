@@ -736,7 +736,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		AddThemeObject(MakeElement("Stroke"), "Stroke")
 	})
 
-	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://139180319698479"), {
+	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://125773756452730"), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
 		Size = UDim2.new(0, 615, 0, 344),
@@ -1122,7 +1122,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
 				local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
 					Size = UDim2.new(1, 0, 0, 30),
-					BackgroundTransparency = 0.7,
+					BackgroundTransparency = 0.5,
 					Parent = ItemParent
 				}), {
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
@@ -1215,7 +1215,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 				ToggleConfig.Default = ToggleConfig.Default or false
 				ToggleConfig.Callback = ToggleConfig.Callback or function() end
-				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(9, 99, 195)
+				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(195, 9, 9)
 				ToggleConfig.Flag = ToggleConfig.Flag or nil
 				ToggleConfig.Save = ToggleConfig.Save or false
 
