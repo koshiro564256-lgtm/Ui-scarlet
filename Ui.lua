@@ -736,7 +736,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		AddThemeObject(MakeElement("Stroke"), "Stroke")
 	})
 
-	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://125773756452730"), {
+	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://81727161518400"), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
 		Size = UDim2.new(0, 615, 0, 344),
@@ -911,7 +911,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		end
 		
 		OrionLib:MakeNotification({
-			Name = "scarlet ui",
+			Name = "Interface Hidden",
 			Content = "Tap "  .. WindowConfig.KeyToOpenWindow .. " to reopen the interface",
 			Time = 3
 		})
@@ -938,7 +938,7 @@ function OrionLib:MakeWindow(WindowConfig)
 					UnlockMouse(false)
 				end
 				OrionLib:MakeNotification({
-					Name = "scarlet ui",
+					Name = "Interface Hidden",
 					Content = "Tap "  .. WindowConfig.KeyToOpenWindow .. " to reopen the interface",
 					Time = 3
 				})
@@ -1098,7 +1098,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddLabel(Text)
 				local LabelFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
 					Size = UDim2.new(1, 0, 0, 30),
-					BackgroundTransparency = 0.7,
+					BackgroundTransparency = 0.5,
 					Parent = ItemParent
 				}), {
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
@@ -1122,7 +1122,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
 				local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
 					Size = UDim2.new(1, 0, 0, 30),
-					BackgroundTransparency = 0.5,
+					BackgroundTransparency = 0.7,
 					Parent = ItemParent
 				}), {
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
@@ -1215,7 +1215,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 				ToggleConfig.Default = ToggleConfig.Default or false
 				ToggleConfig.Callback = ToggleConfig.Callback or function() end
-				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(195, 9, 9)
+				ToggleConfig.Color = ToggleConfig.Color or Color3.fromRGB(9, 99, 195)
 				ToggleConfig.Flag = ToggleConfig.Flag or nil
 				ToggleConfig.Save = ToggleConfig.Save or false
 
@@ -1513,7 +1513,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				local function AddOptions(Options)
 					for _, Option in pairs(Options) do
 						local OptionBtn = AddThemeObject(SetProps(SetChildren(MakeElement("Button", Color3.fromRGB(40, 40, 40)), {
-							MakeElement("Corner", 0, 20),
+							MakeElement("Corner", 0, 6),
 							AddThemeObject(SetProps(MakeElement("Label", Option, 13, 0.4), {
 								Position = UDim2.new(0, 8, 0, 0),
 								Size = UDim2.new(1, -8, 1, 0),
