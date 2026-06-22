@@ -629,10 +629,8 @@ function OrionLib:MakeWindow(WindowConfig)
 		Size = UDim2.new(1, 0, 0, 50)
 	})
 
-	local WindowStuff = AddThemeObject(
-    SetChildren(
-        SetProps(
-            MakeElement("RoundFrame", Color3.fromRGB(255, 180, 180), 0, 10),
+
+	local WindowStuff = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 180, 180), 0, 10), {
 		Size = UDim2.new(0, 150, 1, -50),
 		Position = UDim2.new(0, 0, 0, 50),
 		BackgroundTransparency = 0.35
