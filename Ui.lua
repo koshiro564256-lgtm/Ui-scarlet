@@ -843,34 +843,6 @@ function OrionLib:MakeWindow(WindowConfig)
 		local ContainerHeight = ParticleContainer.AbsoluteSize.Y
 		if ContainerHeight <= 0 then return end
 
-		-- 一定間隔で上から新しい粒子をspawn
-		SpawnTimer = SpawnTimer + DeltaTime
-		while SpawnTimer >= ParticleSettings.SpawnInterval do
-			SpawnTimer = SpawnTimer - ParticleSettings.SpawnInterval
-			SpawnParticle()
-		end
-
-		-- 全粒子を下に動かし、画面外に出たらDestroyして配列から消す
-		local i = 1
-		while i <= #Particles do
-			local p = Particles[i]
-			local Dot = p.Object
-			if Dot and Dot.Parent then
-				p.Y = p.Y + p.Speed * DeltaTime
-				Dot.Position = UDim2.new(Dot.Position.X.Scale, 0, 0, p.Y)
-				if p.Y > ContainerHeight + 10 then
-					Dot:Destroy()
-					table.remove(Particles, i)
-				else
-					i = i + 1
-				end
-			else
-				table.remove(Particles, i)
-			end
-		end
-	end)
-	-- ================= End Particle Background =================
-
 	if WindowConfig.ShowIcon then
 		WindowName.Position = UDim2.new(0, 50, 0, -24)
 		local WindowIcon = SetProps(MakeElement("Image", WindowConfig.Icon), {
