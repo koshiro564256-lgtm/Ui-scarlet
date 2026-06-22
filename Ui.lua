@@ -800,44 +800,6 @@ function OrionLib:MakeWindow(WindowConfig)
 		Active = false
 	})
 
-	local ParticleSettings = {
-		MinSize = 1,
-		MaxSize = 3,
-		MinSpeed = 18,
-		MaxSpeed = 35,
-		MinTransparency = 0.35,
-		MaxTransparency = 0.75,
-		SpawnRate = 3,   -- 1フレームあたり最大何個spawn可能か
-		SpawnInterval = 0.08, -- 何秒おきに1個spawn
-		Color = Color3.fromRGB(255, 255, 255)
-	}
-
-	local Particles = {}
-	local SpawnTimer = 0
-
-	local function SpawnParticle()
-		local Size = math.random(ParticleSettings.MinSize, ParticleSettings.MaxSize)
-		local Dot = Create("Frame", {
-			Name = "Dot",
-			Parent = ParticleContainer,
-			BackgroundColor3 = ParticleSettings.Color,
-			BorderSizePixel = 0,
-			Size = UDim2.new(0, Size, 0, Size),
-			Position = UDim2.new(math.random(0, 1000) / 1000, 0, 0, -Size),
-			BackgroundTransparency = math.random(
-				math.floor(ParticleSettings.MinTransparency * 100),
-				math.floor(ParticleSettings.MaxTransparency * 100)
-			) / 100,
-			ZIndex = 50
-		})
-		Create("UICorner", {Parent = Dot, CornerRadius = UDim.new(1, 0)})
-		table.insert(Particles, {
-			Object = Dot,
-			Y = -Size,
-			Speed = math.random(ParticleSettings.MinSpeed * 10, ParticleSettings.MaxSpeed * 10) / 10
-		})
-	end
-
 	AddConnection(RunService.Heartbeat, function(DeltaTime)
 		if not ParticleContainer or not ParticleContainer.Parent then return end
 		local ContainerHeight = ParticleContainer.AbsoluteSize.Y
