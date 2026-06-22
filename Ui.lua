@@ -459,26 +459,19 @@ function OrionLib:MakeNotification(NotificationConfig)
 			Parent = NotificationHolder
 		})
 
-		local NotificationFrame = Create("ImageLabel", {
-			Parent = NotificationParent,
-			Image = "rbxassetid://93680533843826",
-			ScaleType = Enum.ScaleType.Crop,
-			ImageTransparency = 0.2,
-			BackgroundTransparency = 1,
-			BorderSizePixel = 0,
+		local NotificationFrame = SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(25, 25, 25), 0, 10), {
+			Parent = NotificationParent, 
 			Size = UDim2.new(1, 0, 0, 0),
 			Position = UDim2.new(1, -55, 0, 0),
-			AutomaticSize = Enum.AutomaticSize.Y,
-		})
-		Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = NotificationFrame})
-		SetChildren(NotificationFrame, {
+			BackgroundTransparency = 0,
+			AutomaticSize = Enum.AutomaticSize.Y
+		}), {
+			MakeElement("Stroke", Color3.fromRGB(93, 93, 93), 1.2),
 			MakeElement("Padding", 12, 12, 12, 12),
-			Create("ImageLabel", {
-				Name = "Icon",
-				BackgroundTransparency = 1,
-				Size = UDim2.new(0, 1, 0, 1),
-				ImageTransparency = 1,
-				Visible = false
+			SetProps(MakeElement("Image", NotificationConfig.Image), {
+				Size = UDim2.new(0, 20, 0, 20),
+				ImageColor3 = Color3.fromRGB(240, 240, 240),
+				Name = "Icon"
 			}),
 			SetProps(MakeElement("Label", NotificationConfig.Name, 15), {
 				Size = UDim2.new(1, -30, 0, 20),
@@ -494,26 +487,18 @@ function OrionLib:MakeNotification(NotificationConfig)
 				AutomaticSize = Enum.AutomaticSize.Y,
 				TextColor3 = Color3.fromRGB(200, 200, 200),
 				TextWrapped = true
-			}),
-			SetProps(MakeElement("Label", "[Homeで詳細を確認できます]", 11), {
-				Size = UDim2.new(1, 0, 0, 14),
-				Position = UDim2.new(0, 0, 0, 50),
-				Font = Enum.Font.Gotham,
-				Name = "SubTitle",
-				TextColor3 = Color3.fromRGB(130, 130, 130),
-				TextTransparency = 0.3,
-				TextWrapped = true
 			})
 		})
 
 		TweenService:Create(NotificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Position = UDim2.new(0, 0, 0, 0)}):Play()
 
 		wait(NotificationConfig.Time - 0.88)
-		TweenService:Create(NotificationFrame, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {ImageTransparency = 0.85}):Play()
+		TweenService:Create(NotificationFrame.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
+		TweenService:Create(NotificationFrame, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {BackgroundTransparency = 0.6}):Play()
 		wait(0.3)
+		TweenService:Create(NotificationFrame.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0.9}):Play()
 		TweenService:Create(NotificationFrame.Title, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {TextTransparency = 0.4}):Play()
 		TweenService:Create(NotificationFrame.Content, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {TextTransparency = 0.5}):Play()
-		TweenService:Create(NotificationFrame.SubTitle, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {TextTransparency = 0.8}):Play()
 		wait(0.05)
 
 		NotificationFrame:TweenPosition(UDim2.new(1, 20, 0, 0),'In','Quint',0.8,true)
@@ -629,8 +614,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		Size = UDim2.new(1, 0, 0, 50)
 	})
 
-
-	local WindowStuff = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 180, 180), 0, 10), {
+	local WindowStuff = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 10), {
 		Size = UDim2.new(0, 150, 1, -50),
 		Position = UDim2.new(0, 0, 0, 50),
 		BackgroundTransparency = 0.35
@@ -698,7 +682,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		BackgroundTransparency = 0.85
 	}), "Second")
 
-	local TitleIcon = SetProps(MakeElement("Image", "rbxassetid://71647505399319"), {
+	local TitleIcon = SetProps(MakeElement("Image", "rbxassetid://76162857077293"), {
     Size = UDim2.new(0, 28, 0, 28),
     Position = UDim2.new(0, 12, 0.5, -14),
     ZIndex = 5,
@@ -717,27 +701,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		Position = UDim2.new(0, 0, 1, -1)
 	}), "Stroke")
 
-	local SearchBtn = SetChildren(SetProps(MakeElement("Button"), {
-		Size = UDim2.new(0, 30, 0, 30),
-		Position = UDim2.new(1, -130, 0, 10),
-		Name = "SearchBtn"
-	}), {
-		AddThemeObject(SetProps(MakeElement("Image", "search"), {
-			AnchorPoint = Vector2.new(0.5, 0.5),
-			Size = UDim2.new(0, 16, 0, 16),
-			Position = UDim2.new(0.5, 0, 0.5, 0),
-			ImageTransparency = 0.2,
-			Name = "SearchIco"
-		}), "Text"),
-		AddThemeObject(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 7), {
-			Size = UDim2.new(1, 0, 1, 0),
-			ZIndex = 0,
-			BackgroundTransparency = 0.9
-		}), "Second"),
-		AddThemeObject(MakeElement("Stroke"), "Stroke")
-	})
-
-	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://93680533843826"), {
+	local MainWindow = SetChildren(SetProps(MakeElement("RoundImageFrame", Color3.fromRGB(255, 255, 255), 0, 10, "rbxassetid://81727161518400"), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
 		Size = UDim2.new(0, 615, 0, 344),
@@ -750,7 +714,6 @@ function OrionLib:MakeWindow(WindowConfig)
 			TitleIcon,
 			WindowName,
 			WindowTopBarLine,
-			SearchBtn,
 			AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 7), {
 				Size = UDim2.new(0, 70, 0, 30),
 				Position = UDim2.new(1, -90, 0, 10)
@@ -800,10 +763,73 @@ function OrionLib:MakeWindow(WindowConfig)
 		Active = false
 	})
 
+	local ParticleSettings = {
+		Count = 69,
+		MinSize = 1,
+		MaxSize = 3,
+		MinSpeed = 14,   -- starting fall speed, pixels/second
+		MaxSpeed = 30,
+		Gravity = 12,    -- gentle acceleration, pixels/second^2
+		SpeedCap = 65,   -- terminal velocity so it stays slow and calm
+		MinTransparency = 0.35,
+		MaxTransparency = 0.75,
+		Color = Color3.fromRGB(255, 255, 255)
+	}
+
+	local Particles = {}
+
+	local function CreateParticle(StartAboveTop)
+		local Size = math.random(ParticleSettings.MinSize, ParticleSettings.MaxSize)
+		local StartY = StartAboveTop and -math.random(0, 200) or math.random(0, 300)
+
+		local Dot = Create("Frame", {
+			Name = "Dot",
+			Parent = ParticleContainer,
+			BackgroundColor3 = ParticleSettings.Color,
+			BorderSizePixel = 0,
+			Size = UDim2.new(0, Size, 0, Size),
+			Position = UDim2.new(math.random(0, 1000) / 1000, 0, 0, StartY),
+			BackgroundTransparency = math.random(ParticleSettings.MinTransparency * 100, ParticleSettings.MaxTransparency * 100) / 100,
+			ZIndex = 50
+		})
+		Create("UICorner", {Parent = Dot, CornerRadius = UDim.new(1, 0)})
+
+		return {
+			Object = Dot,
+			XScale = Dot.Position.X.Scale,
+			Speed = math.random(ParticleSettings.MinSpeed * 10, ParticleSettings.MaxSpeed * 10) / 10
+		}
+	end
+
+	for i = 1, ParticleSettings.Count do
+		table.insert(Particles, CreateParticle(false))
+	end
+
 	AddConnection(RunService.Heartbeat, function(DeltaTime)
 		if not ParticleContainer or not ParticleContainer.Parent then return end
 		local ContainerHeight = ParticleContainer.AbsoluteSize.Y
 		if ContainerHeight <= 0 then return end
+
+		for _, Particle in next, Particles do
+			local Dot = Particle.Object
+			if Dot and Dot.Parent then
+				-- Gravity: speed builds up slowly until it hits the soft cap, so the fall stays gentle.
+				Particle.Speed = math.min(Particle.Speed + ParticleSettings.Gravity * DeltaTime, ParticleSettings.SpeedCap)
+
+				local NewOffsetY = Dot.Position.Y.Offset + (Particle.Speed * DeltaTime)
+
+				if NewOffsetY > ContainerHeight + 10 then
+					-- Recycle the dot back to the top with a fresh random X position and speed.
+					Particle.XScale = math.random(0, 1000) / 1000
+					Particle.Speed = math.random(ParticleSettings.MinSpeed * 10, ParticleSettings.MaxSpeed * 10) / 10
+					NewOffsetY = -math.random(0, 40)
+				end
+
+				Dot.Position = UDim2.new(Particle.XScale, 0, 0, NewOffsetY)
+			end
+		end
+	end)
+	-- ================= End Particle Background =================
 
 	if WindowConfig.ShowIcon then
 		WindowName.Position = UDim2.new(0, 50, 0, -24)
@@ -813,11 +839,6 @@ function OrionLib:MakeWindow(WindowConfig)
 		})
 		WindowIcon.Parent = MainWindow.TopBar
 	end	
-
-	-- Apply search icon from JSON icons if available
-	if GetIcon("search") then
-		SearchBtn.SearchIco.Image = GetIcon("search")
-	end
 
 	MakeDraggable(DragPoint, MainWindow)
 
@@ -1020,12 +1041,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			TweenService:Create(TabFrame.Ico, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
 			TweenService:Create(TabFrame.Title, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
 			TabFrame.Title.Font = Enum.Font.GothamBlack
-			Container.Visible = true
-			OrionLib:MakeNotification({
-				Name = TabConfig.Name,
-				Content = TabConfig.Name .. " を開きました",
-				Time = 3
-			})
+			Container.Visible = true   
 		end)
 
 		local function GetElements(ItemParent)
@@ -1033,7 +1049,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			function ElementFunction:AddLabel(Text)
 				local LabelFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
 					Size = UDim2.new(1, 0, 0, 30),
-					BackgroundTransparency = 0.8,
+					BackgroundTransparency = 0.7,
 					Parent = ItemParent
 				}), {
 					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
