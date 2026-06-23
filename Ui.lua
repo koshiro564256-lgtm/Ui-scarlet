@@ -693,11 +693,11 @@ function OrionLib:MakeWindow(WindowConfig)
 	local MainWindow = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 10), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
-		Size = UDim2.new(0, 515, 0, 295),
+		Size = UDim2.new(0, 600, 0, 400),
 		BackgroundTransparency = 0.3,
 		ClipsDescendants = true
 	}), {
-		--SetProps(MakeElement("Image", "rbxassetid://3523728077"), {
+		--SetProps(MakeElement("Image", "rbxassetid://93680533843826"), {
 		--	AnchorPoint = Vector2.new(0.5, 0.5),
 		--	Position = UDim2.new(0.5, 0, 0.5, 0),
 		--	Size = UDim2.new(1, 80, 1, 320),
