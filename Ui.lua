@@ -345,12 +345,14 @@ CreateElement("Frame", function(Color)
 	return Frame
 end)
 
-CreateElement("RoundImageFrame", function(Color, Scale, Offset)
+CreateElement("RoundImageFrame", function(Color, Scale, Offset, Image)
 	local Frame = Create("ImageLabel", {
 		BackgroundColor3 = Color or Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		Image = "rbxassetid://119073569820442",
-		BackgroundTransparency = 1
+		Image = Image or "rbxassetid://119073569820442",
+		ImageColor3 = Color3.fromRGB(255, 255, 255),
+		ScaleType = Enum.ScaleType.Crop
 	}, {
 		Create("UICorner", {
 			CornerRadius = UDim.new(Scale, Offset)
